@@ -7,6 +7,8 @@ import 'package:coffee_app/util/coffee_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'details_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -56,15 +58,15 @@ class _HomePageState extends State<HomePage> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: Icon(Icons.menu),
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.only(right: 15.0),
+            padding: EdgeInsets.only(right: 15.0),
             child: Icon(Icons.person),
           )
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: '',
@@ -135,30 +137,39 @@ class _HomePageState extends State<HomePage> {
           ),
           //Horizontal listview of coffee tiles
           Expanded(
-              child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              CoffeeTile(
-                coffeeImagePath: 'lib/Images/Coffee2.jpg',
-                coffeeName: 'Latte',
-                coffeePrice: '399',
-              ),
-              CoffeeTile(
-                coffeeImagePath: 'lib/Images/Coffee4.jpg',
-                coffeeName: 'Cappucino',
-                coffeePrice: '299',
-              ),
-              CoffeeTile(
-                coffeeImagePath: 'lib/Images/Coffee3.jpg',
-                coffeeName: 'Ombre Shorts',
-                coffeePrice: '999',
-              ),
-              CoffeeTile(
-                coffeeImagePath: 'lib/Images/Coffee5.jpg',
-                coffeeName: 'The Experience',
-                coffeePrice: '5999',
-              ),
-            ],
+              child: GestureDetector(
+            onTap:
+                () => //!==========================================================================
+                    Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const DetailsPage()),
+            ),
+            //!==========================================================================,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                CoffeeTile(
+                  coffeeImagePath: 'lib/Images/Coffee2.jpg',
+                  coffeeName: 'Latte',
+                  coffeePrice: '399',
+                ),
+                CoffeeTile(
+                  coffeeImagePath: 'lib/Images/Coffee4.jpg',
+                  coffeeName: 'Cappucino',
+                  coffeePrice: '299',
+                ),
+                CoffeeTile(
+                  coffeeImagePath: 'lib/Images/Coffee3.jpg',
+                  coffeeName: 'Ombre Shorts',
+                  coffeePrice: '999',
+                ),
+                CoffeeTile(
+                  coffeeImagePath: 'lib/Images/Coffee5.jpg',
+                  coffeeName: 'The Experience',
+                  coffeePrice: '5999',
+                ),
+              ],
+            ),
           ))
         ],
       ),
